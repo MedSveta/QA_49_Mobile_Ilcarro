@@ -1,4 +1,11 @@
 package mobile_tests;
 
-public class SplashTests {
+import config.AppiumConfig;
+import org.testng.annotations.Test;
+
+public class SplashTests extends AppiumConfig {
+    @Test
+    public void splashTestPositive(){
+
+    }
 }

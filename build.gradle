@@ -10,10 +10,25 @@ repositories {
 }
 
 dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.8.1'
+    implementation 'org.testng:testng:7.11.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.28'
+    annotationProcessor 'org.projectlombok:lombok:1.18.28'
+    testCompileOnly 'org.projectlombok:lombok:1.18.28'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+    implementation 'net.datafaker:datafaker:2.5.2'
+
+    implementation 'io.appium:java-client:8.3.0'
+
+    testImplementation 'org.slf4j:slf4j-simple:2.0.9'
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG()
+    jvmArgs(
+            '--add-opens=java.base/java.lang=ALL-UNNAMED',
+            '--add-opens=java.base/java.io=ALL-UNNAMED',
+            '--add-opens=java.base/sun.nio.ch=ALL-UNNAMED')
 }
