@@ -36,7 +36,7 @@ public class AppiumConfig {
 
     }
 
-    @AfterMethod
+    @AfterMethod(enabled = false)
     public void tearDown(){
         if(driver!= null)
             driver.quit();
