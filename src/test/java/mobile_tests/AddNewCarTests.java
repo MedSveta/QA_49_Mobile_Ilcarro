@@ -1,13 +1,13 @@
 package mobile_tests;
 
 import config.AppiumConfig;
+import dto.CarDto;
 import dto.RegistrationBodyDto;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import screens.LoginScreen;
-import screens.MyCarsScreen;
-import screens.SearchScreen;
-import screens.SplashScreen;
+import screens.*;
+
+import java.util.Random;
 
 public class AddNewCarTests extends AppiumConfig {
     @BeforeMethod
@@ -27,9 +27,24 @@ public class AddNewCarTests extends AppiumConfig {
 
     @Test
     public void addNewCarPositiveTest(){
+        int i = new Random().nextInt(1000);
+        CarDto car = CarDto.builder()
+                .serialNumber("345-"+i)
+                .manufacture("Mazda")
+                .model("cx-30")
+                .city("Haifa")
+                .pricePerDay(1.34)
+                .carClass("A")
+                .year("2023")
+                .fuel("Diesel")
+                .seats(4)
+                .build();
         SearchScreen searchScreen = new SearchScreen(driver);
         searchScreen.clickBtnDots();
         searchScreen.clickBtnMyCars();
         new MyCarsScreen(driver).clickBtnAddNewCar();
+        AddNewCarScreen addNewCarScreen = new AddNewCarScreen(driver);
+        addNewCarScreen.typeAddNewCarForm(car);
+        addNewCarScreen.clickBtnAddNewCar();
     }
 }
